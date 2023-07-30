@@ -14,3 +14,8 @@ Assuming that the port you're running the server is 3000 on localhost
  1. Assignment 1 This is the least iteration I found possible while thinking about it, other solutions that were considered were iterating through both arrays and find what is on array1 and array2 first and what is on array2 and on array1 second which would take more time to complete.
  2. Assignment 2 I considered creating a hashmap on my own through Map and access them when trying to find the blacklisted domain which was also worst in terms of performance.
  3. Assignment 3 I did consider lots of considerations one was to iterate until we reach length of biggest array and check on indexes if 3 arrays have the value by accessing value on each of them using iterating index and checking if other 2 arrays include the value and if the value is the lowest common number, other solution was iterating through all of them and finding the lowest common number from each and find the lowest among all and other ideas which were more expensive in terms of performance.
+
+ ## Time it took
+ 1. Assignment 1. ~17 mins
+ 2. Assignment 2. ~3 mins
+ 3. Assignment 3. ~30 min
