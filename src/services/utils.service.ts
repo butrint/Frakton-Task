@@ -29,6 +29,7 @@ export class UtilsService {
   }
 
   findLowestCommon(arr1: number[], arr2: number[], arr3: number[]) {
+    // Since we have to check on 3 arrays we can convert to set for performance
     const set1 = new Set(arr1);
     const set2 = new Set(arr2);
     const set3 = new Set(arr3);
