@@ -24,11 +24,8 @@ export class UtilsController {
     return response.json({ intersection });
   }
 
-  @Post("/blacklist-emails")
-  blackListEmails(@Res() response: Response, @Body() body: BlackListBody) {
-    const blackListed = ["test", "foo", "bar"];
-    const find = "bar";
-
+  @Post("/blacklist-domain")
+  blackListDomain(@Res() response: Response, @Body() body: BlackListBody) {
     const hasBeenBlackListed = this.utilsService.hasBeenBlackListed(
       body.blacklist,
       body.find

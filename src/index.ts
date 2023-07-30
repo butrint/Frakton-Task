@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 
 useExpressServer(app, {
-  routePrefix: "/api/v1 ",
+  routePrefix: "/api/v1",
   controllers: [UtilsController],
 });
 
