@@ -1,9 +1,14 @@
-import { IsArray } from "class-validator";
+import { Type } from "class-transformer";
+import { IsArray, IsNumber } from "class-validator";
 
 export class SortedIntersectionBody {
   @IsArray()
-  array1: number[] | string[];
+  @IsNumber(undefined, { each: true })
+  @Type(() => Number)
+  array1: number[];
 
   @IsArray()
-  array2: number[] | string[];
+  @IsNumber(undefined, { each: true })
+  @Type(() => Number)
+  array2: number[];
 }

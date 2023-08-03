@@ -2,30 +2,91 @@ import { Service } from "typedi";
 
 @Service()
 export class UtilsService {
-  // Since JavaScript uses lexicographical order this will work with strings as well
-  getSortedIntersection(arr1: number[] | string[], arr2: number[] | string[]) {
-    let [idx1, idx2] = [0, 0];
-    const intersection = [];
+  getSortedIntersection(arr1: number[], arr2: number[]) {
+    let idx = 0;
 
-    while (true) {
-      // We know that at most we will go to the biggest number | string on each array
-      if (!arr1[idx1] || !arr2[idx2]) {
-        break;
-      }
+    return arr1.length < arr2.length
+      ? arr1.filter((val, i) => {
+          while (val > arr2[idx]) {
+            idx++;
+          }
 
-      // Since array is sorted we can increase the index of the smaller number | string to compare
-      if (arr1[idx1] === arr2[idx2]) {
-        intersection.push(arr1[idx1]);
-        idx1++;
-        idx2++;
-      } else if (arr1[idx1] > arr2[idx2]) {
-        idx2++;
-      } else {
-        idx1++;
-      }
-    }
+          if (val === arr2[idx] && val !== arr1[i - 1]) {
+            return true;
+          }
 
-    return intersection;
+          return false;
+        })
+      : arr2.filter((val, i) => {
+          while (val > arr1[idx]) {
+            idx++;
+          }
+
+          if (val === arr1[idx] && val !== arr2[i - 1]) {
+            return true;
+          }
+
+          return false;
+        });
+
+    // let [idx1, idx2] = [0, 0];
+
+    // const intersection: number[] = [];
+
+    // while (idx1 < arr1.length && idx2 < arr2.length) {
+    //   const val1 = arr1[idx1];
+    //   const val2 = arr2[idx2];
+
+    //   if (idx2 >= arr2.length) {
+    //     break;
+    //   }
+
+    //   // Since array is sorted we can increase the index of the smaller number to compare
+    //   if (val1 === val2 && val1 !== intersection[intersection.length - 1]) {
+    //     intersection.push(val1);
+    //     idx1++;
+    //     idx2++;
+    //   } else if (val1 > val2) {
+    //     idx2++;
+    //   } else {
+    //     idx1++;
+    //   }
+    // }
+
+    // return intersection;
+
+    // // new solution without introducing new additional data type
+    // let [idx1, idx2] = [0, 0];
+    // const copy = arr1.length > arr2.length ? arr1 : arr2;
+
+    // return copy.reduce((intersection: number[], _, idx) => {
+    //   const val1 = arr1[idx1];
+    //   const val2 = arr2[idx2];
+
+    //   // // We can remove this since this interrupts the loop of reduce but if we use it we introduce new ...
+    //   // // time complexity of O(N) and time complexity of O(N) which Array.prototype.splice() has
+    //   // if (idx1 >= arr1.length || idx2 >= arr2.length) {
+    //   //   copy.splice(0, idx);
+    //   // }
+
+    //   if (val1 === val2 && val1 !== intersection[intersection.length - 1]) {
+    //     intersection.push(val1);
+    //     idx1++;
+    //     idx2++;
+    //   } else if (val1 > val2) {
+    //     idx2++;
+    //   } else {
+    //     idx1++;
+    //   }
+
+    //   return intersection;
+    // }, []);
+  }
+
+  hasBeenBlackListed(blacklist: string[], search: string) {
+    const set1 = new Set(blacklist);
+
+    return set1.has(search);
   }
 
   findLowestCommon(arr1: number[], arr2: number[], arr3: number[]) {
@@ -71,11 +132,5 @@ export class UtilsService {
       smallestInArr2 || Number.MAX_SAFE_INTEGER,
       smallestInArr3 || Number.MAX_SAFE_INTEGER
     );
-  }
-
-  hasBeenBlackListed(blacklist: string[], search: string) {
-    const set1 = new Set(blacklist);
-
-    return set1.has(search);
   }
 }
