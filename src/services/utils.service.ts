@@ -28,59 +28,6 @@ export class UtilsService {
 
           return false;
         });
-
-    // let [idx1, idx2] = [0, 0];
-
-    // const intersection: number[] = [];
-
-    // while (idx1 < arr1.length && idx2 < arr2.length) {
-    //   const val1 = arr1[idx1];
-    //   const val2 = arr2[idx2];
-
-    //   if (idx2 >= arr2.length) {
-    //     break;
-    //   }
-
-    //   // Since array is sorted we can increase the index of the smaller number to compare
-    //   if (val1 === val2 && val1 !== intersection[intersection.length - 1]) {
-    //     intersection.push(val1);
-    //     idx1++;
-    //     idx2++;
-    //   } else if (val1 > val2) {
-    //     idx2++;
-    //   } else {
-    //     idx1++;
-    //   }
-    // }
-
-    // return intersection;
-
-    // // new solution without introducing new additional data type
-    // let [idx1, idx2] = [0, 0];
-    // const copy = arr1.length > arr2.length ? arr1 : arr2;
-
-    // return copy.reduce((intersection: number[], _, idx) => {
-    //   const val1 = arr1[idx1];
-    //   const val2 = arr2[idx2];
-
-    //   // // We can remove this since this interrupts the loop of reduce but if we use it we introduce new ...
-    //   // // time complexity of O(N) and time complexity of O(N) which Array.prototype.splice() has
-    //   // if (idx1 >= arr1.length || idx2 >= arr2.length) {
-    //   //   copy.splice(0, idx);
-    //   // }
-
-    //   if (val1 === val2 && val1 !== intersection[intersection.length - 1]) {
-    //     intersection.push(val1);
-    //     idx1++;
-    //     idx2++;
-    //   } else if (val1 > val2) {
-    //     idx2++;
-    //   } else {
-    //     idx1++;
-    //   }
-
-    //   return intersection;
-    // }, []);
   }
 
   hasBeenBlackListed(blacklist: string[], search: string) {
