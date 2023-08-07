@@ -64,42 +64,14 @@ export class UtilsService {
     const set2 = new Set(arr2);
     const set3 = new Set(arr3);
 
-    let smallestInArr1, smallestInArr2, smallestInArr3;
+    let smallestInArrays = Number.MAX_SAFE_INTEGER;
 
-    for (const val of set1) {
-      if (
-        (!smallestInArr1 || val < smallestInArr1) &&
-        set2.has(val) &&
-        set3.has(val)
-      ) {
-        smallestInArr1 = val;
+    for (const val of new Set([...set1, ...set2, ...set3])) {
+      if (set1.has(val) && set2.has(val) && set3.has(val)) {
+        smallestInArrays = Math.min(smallestInArrays, val);
       }
     }
 
-    for (const val of set2) {
-      if (
-        (!smallestInArr2 || val < smallestInArr2) &&
-        set1.has(val) &&
-        set3.has(val)
-      ) {
-        smallestInArr2 = val;
-      }
-    }
-
-    for (const val of set3) {
-      if (
-        (!smallestInArr3 || val < smallestInArr3) &&
-        set2.has(val) &&
-        set1.has(val)
-      ) {
-        smallestInArr3 = val;
-      }
-    }
-
-    return Math.min(
-      smallestInArr1 || Number.MAX_SAFE_INTEGER,
-      smallestInArr2 || Number.MAX_SAFE_INTEGER,
-      smallestInArr3 || Number.MAX_SAFE_INTEGER
-    );
+    return smallestInArrays;
   }
 }
