@@ -28,7 +28,7 @@ export class UtilsController {
   blackListDomains(@Res() response: Response, @Body() body: BlackListBody) {
     const hasBeenBlackListed = this.utilsService.hasBeenBlackListed(
       body.blacklist,
-      body.find
+      body.email
     );
 
     return response.json({ hasBeenBlackListed });

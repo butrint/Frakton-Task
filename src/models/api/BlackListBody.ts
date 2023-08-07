@@ -1,4 +1,4 @@
-import { ArrayMinSize, IsArray, IsString } from "class-validator";
+import { ArrayMinSize, IsArray, IsEmail, IsString } from "class-validator";
 
 export class BlackListBody {
   @IsArray()
@@ -6,6 +6,8 @@ export class BlackListBody {
   @ArrayMinSize(1)
   blacklist: string[];
 
+
   @IsString()
-  find: string;
+  @IsEmail()
+  email: string;
 }

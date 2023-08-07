@@ -30,10 +30,32 @@ export class UtilsService {
         });
   }
 
-  hasBeenBlackListed(blacklist: string[], search: string) {
-    const set1 = new Set(blacklist);
+  hasBeenBlackListed(blacklist: string[], email: string) {
+    const blacklistSet = new Set(blacklist.map((bl) => bl.toLocaleLowerCase()));
 
-    return set1.has(search);
+    const domainWithSubdomains = email
+      .substring(email.indexOf("@") + 1)
+      .split(".");
+
+    let hasBeenBlackListed = false;
+    let concatDomain =
+      domainWithSubdomains[domainWithSubdomains.length - 2] +
+      "." +
+      domainWithSubdomains[domainWithSubdomains.length - 1];
+
+    let i = domainWithSubdomains.length - 2;
+
+    while (i >= 0) {
+      if (blacklistSet.has(concatDomain.toLocaleLowerCase())) {
+        hasBeenBlackListed = true;
+        break;
+      }
+
+      i--;
+      concatDomain = domainWithSubdomains[i] + "." + concatDomain;
+    }
+
+    return hasBeenBlackListed;
   }
 
   findLowestCommon(arr1: number[], arr2: number[], arr3: number[]) {
